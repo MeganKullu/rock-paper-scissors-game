@@ -19,28 +19,28 @@ const Layout = ({ score }) => {
 
         </article>
 
-        <main className='mt-36 relative md:self-center'>
+        <main className='mt-36 relative self-center'>
 
-          <div className='relative z-30 flex justify-center lg:h-52 lg:w-96'>
-            <img src="../images/bg-triangle.svg" alt="traingle" />
+          <div className='relative z-30 flex justify-center h-44 w-80 lg:h-52 lg:w-96'>
+            <img src="../images/bg-triangle.svg" alt="triangle" />
           </div>
 
           <div className='absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full'>
             <div className='flex place-content-between w-full'>
 
-              <div className="bg-white h-36 w-36 flex justify-center items-center rounded-full border-paper border-[16px]" style={{ zIndex: 1000 }}>
+              <div className="bg-white h-32 w-32 md:h-36 md:w-36 flex justify-center items-center rounded-full border-paper border-[16px]" style={{ zIndex: 1000 }}>
                 <button aria-label='paper'><img src="../images/icon-paper.svg" alt="paper"/></button>
               </div>
 
-              <div className="bg-white h-36 w-36 flex justify-center items-center rounded-full border-scissors border-[16px]" style={{ zIndex: 1000 }}>
+              <div className="bg-white h-32 w-32 md:h-36 md:w-36 flex justify-center items-center rounded-full border-scissors border-[16px]" style={{ zIndex: 1000 }}>
                 <button aria-label='scissors'><img src="../images/icon-scissors.svg" alt="scissors" /></button>
               </div>
 
             </div>
 
-            <div className='flex justify-center mt-24 lg:mt-11'>
+            <div className='flex justify-center mt-6 lg:mt-11'>
 
-              <div className='bg-white h-36 w-36 flex justify-center items-center rounded-full border-rock border-[16px]' style={{ zIndex: 1000 }}>
+              <div className='bg-white h-32 w-32 md:h-36 md:w-36 flex justify-center items-center rounded-full border-rock border-[16px]' style={{ zIndex: 1000 }}>
                 <button aria-label='rock'><img src="../images/icon-rock.svg" alt="rock" /></button>
               </div>
 
@@ -49,7 +49,7 @@ const Layout = ({ score }) => {
 
         </main>
 
-        <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-16 mb-10 flex justify-center items-center'>
+        <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-32 mb-10 flex justify-center items-center'>
           <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
         </div>
 

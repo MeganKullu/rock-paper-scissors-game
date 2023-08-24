@@ -6,9 +6,9 @@ const Layout = ({ score }) => {
 
 
   return (
-    <div className='h-full'>
-      <div className='flex flex-col bg-radial px-4 h-screen'>
-        <article className='rounded-lg border-2 py-2 pl-4 pr-2 mt-6 flex w-full place-content-between '>
+    <div className='bg-radial flex flex-col md:justify-center md:items-center'>
+      <div className='flex flex-col  px-4 min-h-screen w-full md:w-3/4'>
+        <article className='rounded-lg border-2 py-2 pl-4 pr-2 mt-6 flex w-full place-content-between'>
 
           <div className='h-16 w-24 flex justify-center items-center my-3'>
             <img src="../images/logo.svg" alt="" />
@@ -21,7 +21,7 @@ const Layout = ({ score }) => {
 
         </article>
 
-        <main className='mt-36 relative'>
+        <main className='mt-36 relative md:self-center'>
 
           <div className='relative z-30 flex justify-center '>
             <img src="../images/bg-triangle.svg" alt="" />
@@ -31,11 +31,11 @@ const Layout = ({ score }) => {
             <div className='flex place-content-between w-full'>
 
               <div className="bg-white h-32 w-32 flex justify-center items-center rounded-full border-paper border-8 " style={{ zIndex: 1000 }}>
-                <button aria-label='paper'><img src="../images/icon-paper.svg" alt="" /></button>
+                <button aria-label='paper'><img src="../images/icon-paper.svg" alt="paper"/></button>
               </div>
 
               <div className="bg-white h-32 w-32 flex justify-center items-center rounded-full border-scissors border-8" style={{ zIndex: 1000 }}>
-                <button aria-label='scissors'><img src="../images/icon-scissors.svg" alt="" /></button>
+                <button aria-label='scissors'><img src="../images/icon-scissors.svg" alt="scissors" /></button>
               </div>
 
             </div>
@@ -43,7 +43,7 @@ const Layout = ({ score }) => {
             <div className='flex justify-center mt-24'>
 
               <div className='bg-white h-32 w-32 flex justify-center items-center rounded-full border-rock border-8' style={{ zIndex: 1000 }}>
-                <button aria-label='rock'><img src="../images/icon-rock.svg" alt="" /></button>
+                <button aria-label='rock'><img src="../images/icon-rock.svg" alt="rock" /></button>
               </div>
 
             </div>
@@ -51,7 +51,7 @@ const Layout = ({ score }) => {
 
         </main>
 
-        <div className='border border-white rounded-lg text-white self-center w-1/3 mt-12 flex justify-center items-center'>
+        <div className='border border-white rounded-lg text-white self-center w-1/3 mt-16 mb-10 flex justify-center items-center'>
           <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
         </div>
 

@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import MainLayout from './MainLayout';
+import SecondLayout from './SecondLayout';
+import ThirdLayout from './ThirdLayout';
+import FourthLayout from './FourthLayout';
 
 const Layout = () => {
   const { userChoice, setUserChoice } = useState(null);
@@ -54,8 +57,8 @@ const Layout = () => {
         </article>
 
         <MainLayout/>
-        
-        <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-32 mb-10 flex justify-center items-center'>
+
+        <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
           <button onClick={{ toggleRules }} aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
         </div>
 

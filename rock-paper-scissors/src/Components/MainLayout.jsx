@@ -22,7 +22,7 @@ const MainLayout = () => {
 
                     </div>
 
-                    <div className='flex justify-center mt-12 lg:mt-16'>
+                    <div className='flex justify-center mt-11 lg:mt-20'>
 
                         <div className='bg-white h-32 w-32 md:h-36 md:w-36 flex justify-center items-center rounded-full border-rock border-[16px]' style={{ zIndex: 1000 }}>
                             <button id='rock' onClick={() => handleUserChoice("Rock")} aria-label='rock'><img src="../images/icon-rock.svg" alt="rock" /></button>

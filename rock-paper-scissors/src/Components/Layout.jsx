@@ -6,16 +6,16 @@ import ThirdLayout from './ThirdLayout';
 import FourthLayout from './FourthLayout';
 
 const Layout = () => {
-  const { userChoice, setUserChoice } = useState(null);
-  const { compChoice, setCompChoice } = useState(null);
-  const { userScore, setUserScore } = useState(0);
+  const [ userChoice, setUserChoice ] = useState(null);
+  const [ compChoice, setCompChoice] = useState(null);
+  const [ userScore, setUserScore]  = useState(0);
   
 
   const choices = ["Rock", "Paper", "Scissors"];
 
   // function to handle button click actions
-  const handleUserChoice = (userChoice) => {
-    setUserChoice(userChoice);
+  const handleUserChoice = (choice) => {
+    setUserChoice(choice);
 
     // logic to handle computers choice
     const randomIndex = Math.floor(Math.random() * choices.length);
@@ -54,7 +54,7 @@ const Layout = () => {
           </div>
         </article>
 
-        <MainLayout/>
+        <MainLayout handleUserChoice={handleUserChoice}/>
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
           <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>

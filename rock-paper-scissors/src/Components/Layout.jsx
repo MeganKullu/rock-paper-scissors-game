@@ -9,7 +9,7 @@ const Layout = () => {
   const { userChoice, setUserChoice } = useState(null);
   const { compChoice, setCompChoice } = useState(null);
   const { userScore, setUserScore } = useState(0);
-  const { rules, setRules} = useState(false);
+  
 
   const choices = ["Rock", "Paper", "Scissors"];
 
@@ -36,9 +36,7 @@ const Layout = () => {
 
   }
 
-  const toggleRules = () => {
-    setRules(true)
-  }
+
 
   
   return (
@@ -59,12 +57,12 @@ const Layout = () => {
         <MainLayout/>
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
-          <button onClick={{ toggleRules }} aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
+          <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
         </div>
 
       </div>
       <div className='hidden lg:flex self-end border border-white rounded-lg text-white w-1/12 mt-16 mb-10 mr-14 justify-center items-center'>
-        <button onClick={{ toggleRules }} aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
+        <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
       </div>
     </div>
   )

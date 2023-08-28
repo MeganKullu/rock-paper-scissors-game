@@ -1,12 +1,15 @@
 import React from 'react'
+import { useState } from 'react';
 
 const MainLayout = () => {
+    
+
     return (
         <div>
             <main className='mt-36 relative self-center'>
 
                 <div className='relative z-30 flex justify-center h-44 lg:h-64'>
-                    <img src="../images/bg-triangle.svg" alt="triangle"/>
+                    <img src="../images/bg-triangle.svg" alt="triangle" />
                 </div>
 
                 <div className='absolute z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-full lg:w-10/12 xl:w-8/12 2xl:w-7/12'>

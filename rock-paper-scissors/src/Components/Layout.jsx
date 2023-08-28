@@ -51,9 +51,10 @@ const Layout = () => {
             <p className='text-paper text-xs'>SCORE</p>
             <div className='text-dark-text text-4xl lg:ftext-6xl font-extrabold'>{userScore}</div>
           </div>
-
         </article>
+
         <MainLayout/>
+        
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-32 mb-10 flex justify-center items-center'>
           <button onClick={{ toggleRules }} aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
         </div>

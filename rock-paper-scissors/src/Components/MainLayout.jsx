@@ -5,7 +5,7 @@ const MainLayout = () => {
         <div>
             <main className='mt-36 relative self-center'>
 
-                <div className='relative z-30 flex justify-center h-44 w-80 lg:h-52 lg:w-96'>
+                <div className='relative z-30 flex justify-center h-44'>
                     <img src="../images/bg-triangle.svg" alt="triangle" />
                 </div>
 
@@ -22,7 +22,7 @@ const MainLayout = () => {
 
                     </div>
 
-                    <div className='flex justify-center mt-6 lg:mt-11'>
+                    <div className='flex justify-center mt-12 lg:mt-1'>
 
                         <div className='bg-white h-32 w-32 md:h-36 md:w-36 flex justify-center items-center rounded-full border-rock border-[16px]' style={{ zIndex: 1000 }}>
                             <button id='rock' onClick={() => handleUserChoice("Rock")} aria-label='rock'><img src="../images/icon-rock.svg" alt="rock" /></button>

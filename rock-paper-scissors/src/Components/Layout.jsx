@@ -1,24 +1,25 @@
 import React from 'react';
-import { useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import MainLayout from './MainLayout';
 import SecondLayout from './SecondLayout';
 import ThirdLayout from './ThirdLayout';
 import FourthLayout from './FourthLayout';
 
-const Layout = () => { 
+const Layout = () => {
   const [begun, setHasBegun] = useState(false);
   const [userChoice, setUserChoice] = useState(null);
   const [compChoice, setCompChoice] = useState(null);
   const [userScore, setUserScore] = useState(0);
   const [selected, setSelected] = useState(false);
   const [housePicked, setHousePicked] = useState(false);
+  const [result, setResult] = useState(false);
 
 
   const choices = ["Rock", "Paper", "Scissors"];
 
   useEffect(() => {
     setHasBegun(true);
-  },[])
+  }, [])
 
   // function to handle button click actions
   const handleUserChoice = (choice) => {
@@ -37,17 +38,28 @@ const Layout = () => {
 
 
     //Determine winner and set the score
+    setTimeout(() => {
+      setHousePicked(false);
+      if ((userChoice === "Rock") && (compChoice === "Scissors") ||
+        (userChoice === "Paper") && (compChoice === "Rock") ||
+        (userChoice === "Scissors") && (compChoice === "Paper")
+      ) {
+        setUserScore(userScore + 1)
+      }
 
-    if ((userChoice === "Rock") && (compChoice === "Scissors") ||
-      (userChoice === "Paper") && (compChoice === "Rock") ||
-      (userChoice === "Scissors") && (compChoice === "Paper")
-    ) {
-      setUserScore(userScore + 1)
-    }
+      if ((userChoice === "Rock") && (compChoice === "Rock") ||
+        (userChoice === "Paper") && (compChoice === "Paper") ||
+        (userChoice === "Scissors") && (compChoice === "Scissors")) {
+        setUserScore(userScore + 0)
+      }
 
-    else {
-      setUserScore(userScore - 1)
-    }
+      else {
+        setUserScore(userScore - 1)
+      }
+
+      setResult(true);
+
+    }, 2800)
 
   }
 
@@ -66,10 +78,12 @@ const Layout = () => {
             <div className='text-dark-text text-4xl lg:ftext-6xl font-extrabold'>{userScore}</div>
           </div>
         </article>
-
+        
         {begun && <MainLayout handleUserChoice={handleUserChoice} />}
         {selected && <SecondLayout userChoice={userChoice} />}
         {housePicked && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
+        {result && <FourthLayout userChoice={userChoice} compChoice={compChoice} />}
+
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
           <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>

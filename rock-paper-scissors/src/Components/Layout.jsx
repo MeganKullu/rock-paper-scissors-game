@@ -1,18 +1,24 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import MainLayout from './MainLayout';
 import SecondLayout from './SecondLayout';
 import ThirdLayout from './ThirdLayout';
 import FourthLayout from './FourthLayout';
 
-const Layout = () => {
+const Layout = () => { 
+  const [begun, setHasBegun] = useState(false);
   const [userChoice, setUserChoice] = useState(null);
   const [compChoice, setCompChoice] = useState(null);
   const [userScore, setUserScore] = useState(0);
   const [selected, setSelected] = useState(false);
+  const [housePicked, setHousePicked] = useState(false);
 
 
   const choices = ["Rock", "Paper", "Scissors"];
+
+  useEffect(() => {
+    setHasBegun(true);
+  })
 
   // function to handle button click actions
   const handleUserChoice = (choice) => {
@@ -20,8 +26,13 @@ const Layout = () => {
     setSelected(true);
 
     // logic to handle computers choice
-    const randomIndex = Math.floor(Math.random() * choices.length);
-    setCompChoice(choices[randomIndex]);
+    setTimeout(() => {
+      const randomIndex = Math.floor(Math.random() * choices.length);
+      setCompChoice(choices[randomIndex]);
+      setHousePicked(true);
+    }, 3000)
+
+
 
     //Determine winner and set the score
 
@@ -40,8 +51,8 @@ const Layout = () => {
 
 
   return (
-    <div className='bg-radial flex flex-col md:justify-center md:items-center'>
-      <div className='flex flex-col px-4 min-h-screen w-full md:w-1/2'>
+    <div className='bg-radial flex flex-col md:justify-center md:items-center min-h-screen'>
+      <div className='flex flex-col px-4 w-full md:w-1/2'>
         <article className='rounded-lg border-2 py-2 pl-4 pr-2 mt-6 flex w-full place-content-between'>
 
           <div className='h-16 w-24 flex justify-center items-center my-3'>
@@ -54,8 +65,9 @@ const Layout = () => {
           </div>
         </article>
 
-        {!selected && <MainLayout handleUserChoice={handleUserChoice}/>}
-        { selected && <SecondLayout userChoice={userChoice}/>}
+        {begun && <MainLayout handleUserChoice={handleUserChoice} />}
+        {selected && <SecondLayout userChoice={userChoice} />}
+        {housePicked && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
           <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>

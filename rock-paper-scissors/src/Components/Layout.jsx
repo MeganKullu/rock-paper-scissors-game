@@ -18,19 +18,21 @@ const Layout = () => {
 
   useEffect(() => {
     setHasBegun(true);
-  })
+  },[])
 
   // function to handle button click actions
   const handleUserChoice = (choice) => {
     setUserChoice(choice);
     setSelected(true);
+    setHasBegun(false);
 
     // logic to handle computers choice
     setTimeout(() => {
       const randomIndex = Math.floor(Math.random() * choices.length);
       setCompChoice(choices[randomIndex]);
       setHousePicked(true);
-    }, 3000)
+      setSelected(false);
+    }, 1500)
 
 
 

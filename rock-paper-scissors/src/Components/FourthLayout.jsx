@@ -28,7 +28,7 @@ const Scissors = () => {
 const FourthLayout = ({ compChoice, userChoice, finalResult }) => {
 
   return (
-    <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg justify-center items-center gap-10 '>
+    <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg justify-center items-center'>
       <div className='flex-col lg:flex place-content-between lg:w-3/4 justify-center items-center'>
         <div className='flex gap-10 lg:flex items-center'>
           <div className=' flex tracking-widest items-center lg:w-1/4 flex-col-reverse lg:flex-col'>

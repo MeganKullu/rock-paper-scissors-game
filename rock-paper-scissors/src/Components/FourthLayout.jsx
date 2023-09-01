@@ -25,28 +25,42 @@ const Scissors = () => {
   )
 }
 
-const FourthLayout = ({ compChoice, userChoice, finalResult}) => {
+const FourthLayout = ({ compChoice, userChoice, finalResult }) => {
 
   return (
-    <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg items-center gap-10 place-content-between lg:w-3/4'>
-      <div className=' flex flex-col tracking-widest items-center w-1/4'>
-        <div className='mb-14'>YOU PICKED</div>
-        {userChoice === "Rock" && <Rock />}
-        {userChoice === "Paper" && <Paper />}
-        {userChoice === "Scissors" && <Scissors />}
+    <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg justify-center items-center gap-10 '>
+      <div className='flex-col lg:flex place-content-between lg:w-3/4 items-center'>
+        <div className='flex lg:flex'>
+          <div className=' flex tracking-widest items-center lg:w-1/4 flex-col-reverse lg:flex-col'>
+            <div className='mb-14'>YOU PICKED</div>
+            {userChoice === "Rock" && <Rock />}
+            {userChoice === "Paper" && <Paper />}
+            {userChoice === "Scissors" && <Scissors />}
+          </div>
+
+          <div className='hidden lg:flex flex-col lg:w-1/4'>
+            <div className='font-bold text-2xl'>{finalResult}</div>
+            <button className='tracking-widest bg-white px-4 py-3 rounded-lg text-dark-text text-base'>PLAY AGAIN</button>
+          </div>
+
+          <div className=' flex items-center lg:w-1/4 flex-col-reverse lg:flex-col'>
+            <div className='mb-14'>THE HOUSE PICKED</div>
+            {compChoice === "Rock" && <Rock />}
+            {compChoice === "Paper" && <Paper />}
+            {compChoice === "Scissors" && <Scissors />}
+          </div>
+        </div>
+
+
+        <div className='flex flex-col w-1/4 lg:hidden'>
+          <div className='font-bold text-2xl'>{finalResult}</div>
+          <button className='tracking-widest bg-white px-4 py-3 rounded-lg text-dark-text text-base'>PLAY AGAIN</button>
+        </div>
       </div>
 
-      <div className='flex flex-col w-1/4'>
-        <div className='font-bold text-2xl'>{finalResult}</div>
-        <button className='tracking-widest bg-white px-4 py-3 rounded-lg text-dark-text text-base'>PLAY AGAIN</button>
-      </div>
 
-      <div className=' flex flex-col items-center w-1/4'>
-        <div className='mb-14'>THE HOUSE PICKED</div>
-        {compChoice === "Rock" && <Rock />}
-        {compChoice === "Paper" && <Paper />}
-        {compChoice === "Scissors" && <Scissors />}
-      </div>
+
+
     </div>
   )
 }

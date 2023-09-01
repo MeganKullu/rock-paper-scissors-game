@@ -28,13 +28,13 @@ const SecondLayout = ({ userChoice }) => {
 
     return (
         <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg items-center md:w-1/2'>
-            <div className='basis-1/2 flex flex-col tracking-widest items-center'>
+            <div className='basis-1/2 flex tracking-widest items-center flex-col-reverse lg:flex-col'>
                 <div className='mb-14'>YOU PICKED</div>
                 {userChoice === "Rock" && <Rock/>}
                 {userChoice === "Paper" && <Paper/>}
                 {userChoice === "Scissors" && <Scissors/>}
             </div>
-            <div className='basis-1/2 flex flex-col items-center'>
+            <div className='basis-1/2 flex items-center flex-col-reverse lg:flex-col'>
                 <div className='mb-14'>THE HOUSE PICKED</div>
                 <div className='flex justify-center items-center'><div className='bg-blue-950 rounded-full h-24 w-24 md:h-36 md:w-36 lg:w-50 lg:h-50 '></div></div>        
             </div>

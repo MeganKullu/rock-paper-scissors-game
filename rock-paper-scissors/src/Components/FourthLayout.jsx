@@ -29,8 +29,8 @@ const FourthLayout = ({ compChoice, userChoice, finalResult }) => {
 
   return (
     <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg justify-center items-center gap-10 '>
-      <div className='flex-col lg:flex place-content-between lg:w-3/4 items-center'>
-        <div className='flex lg:flex'>
+      <div className='flex-col lg:flex place-content-between lg:w-3/4 justify-center items-center'>
+        <div className='flex gap-10 lg:flex items-center'>
           <div className=' flex tracking-widest items-center lg:w-1/4 flex-col-reverse lg:flex-col'>
             <div className='mb-14'>YOU PICKED</div>
             {userChoice === "Rock" && <Rock />}
@@ -38,9 +38,9 @@ const FourthLayout = ({ compChoice, userChoice, finalResult }) => {
             {userChoice === "Scissors" && <Scissors />}
           </div>
 
-          <div className='hidden lg:flex flex-col lg:w-1/4'>
+          <div className='hidden lg:flex flex-col w-full lg:w-1/4'>
             <div className='font-bold text-2xl'>{finalResult}</div>
-            <button className='tracking-widest bg-white px-4 py-3 rounded-lg text-dark-text text-base'>PLAY AGAIN</button>
+            <button className='tracking-widest bg-white px-4 py-3 rounded-lg text-dark-text text-base  hover:text-red-500'>PLAY AGAIN</button>
           </div>
 
           <div className=' flex items-center lg:w-1/4 flex-col-reverse lg:flex-col'>
@@ -52,9 +52,9 @@ const FourthLayout = ({ compChoice, userChoice, finalResult }) => {
         </div>
 
 
-        <div className='flex flex-col w-1/4 lg:hidden'>
-          <div className='font-bold text-2xl'>{finalResult}</div>
-          <button className='tracking-widest bg-white px-4 py-3 rounded-lg text-dark-text text-base'>PLAY AGAIN</button>
+        <div className='flex flex-col lg:hidden justify-center items-center'>
+          <div className='font-bold lg:text-2xl'>{finalResult}</div>
+          <button className='tracking-widest bg-white px-16 py-2 lg:px-4 lg:py-3 rounded-lg text-dark-text text-base lg:text-base hover:text-red-500'>PLAY AGAIN</button>
         </div>
       </div>
 

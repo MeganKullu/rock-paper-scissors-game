@@ -25,23 +25,23 @@ const Scissors = () => {
   )
 }
 
-const FourthLayout = ({ compChoice, userChoice }) => {
+const FourthLayout = ({ compChoice, userChoice, finalResult}) => {
 
   return (
-    <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg items-center gap-10 place-content-between'>
-      <div className=' flex flex-col tracking-widest items-center'>
+    <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg items-center gap-10 place-content-between lg:w-3/4'>
+      <div className=' flex flex-col tracking-widest items-center w-1/4'>
         <div className='mb-14'>YOU PICKED</div>
         {userChoice === "Rock" && <Rock />}
         {userChoice === "Paper" && <Paper />}
         {userChoice === "Scissors" && <Scissors />}
       </div>
 
-      <div className='flex flex-col'>
-        <div className='font-bold text-2xl'>YOU WIN</div>
-        <button className='tracking-widest bg-white px-6 py-2 rounded-lg text-dark-text text-sm'>PLAY AGAIN</button>
+      <div className='flex flex-col w-1/4'>
+        <div className='font-bold text-2xl'>{finalResult}</div>
+        <button className='tracking-widest bg-white px-4 py-3 rounded-lg text-dark-text text-base'>PLAY AGAIN</button>
       </div>
 
-      <div className=' flex flex-col items-center'>
+      <div className=' flex flex-col items-center w-1/4'>
         <div className='mb-14'>THE HOUSE PICKED</div>
         {compChoice === "Rock" && <Rock />}
         {compChoice === "Paper" && <Paper />}

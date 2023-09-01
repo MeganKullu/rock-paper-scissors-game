@@ -28,7 +28,7 @@ const Scissors = () => {
 const ThirdLayout = ({ compChoice, userChoice }) => {
 
   return (
-    <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg items-center'>
+    <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg items-center md:w-1/2'>
       <div className='basis-1/2 flex flex-col tracking-widest items-center'>
         <div className='mb-14'>YOU PICKED</div>
         {userChoice === "Rock" && <Rock />}

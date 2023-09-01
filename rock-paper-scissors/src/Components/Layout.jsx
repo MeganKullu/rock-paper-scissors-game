@@ -65,21 +65,23 @@ const Layout = () => {
 
 
   return (
-    <div className='bg-radial flex flex-col md:justify-center md:items-center min-h-screen'>
-      <div className='flex flex-col px-4 w-full md:w-1/2'>
-        <article className='rounded-lg border-2 py-2 pl-4 pr-2 mt-6 flex w-full place-content-between'>
+    <div className='bg-radial flex flex-col md:justify-center md:items-center min-h-screen w-full'>
+      <div className='flex flex-col px-4 w-full justify-center items-center'>
+        <article className='w-full lg:w-1/2'>
+          <div className='rounded-lg border-2 py-2 pl-4 pr-2 mt-6 flex place-content-between'>
+            <div className='h-16 w-24 flex justify-center items-center my-3'>
+              <img src="../images/logo.svg" alt="logo" />
+            </div>
 
-          <div className='h-16 w-24 flex justify-center items-center my-3'>
-            <img src="../images/logo.svg" alt="logo" />
+            <div className='bg-white rounded-lg flex flex-col justify-center items-center w-28'>
+              <p className='text-paper text-xs'>SCORE</p>
+              <div className='text-dark-text text-4xl lg:ftext-6xl font-extrabold'>{userScore}</div>
+            </div>
           </div>
 
-          <div className='bg-white rounded-lg flex flex-col justify-center items-center w-28'>
-            <p className='text-paper text-xs'>SCORE</p>
-            <div className='text-dark-text text-4xl lg:ftext-6xl font-extrabold'>{userScore}</div>
-          </div>
         </article>
-        
-        {begun && <MainLayout handleUserChoice={handleUserChoice} />}
+
+        {begun && <MainLayout handleUserChoice={handleUserChoice} className="" />}
         {selected && <SecondLayout userChoice={userChoice} />}
         {housePicked && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
         {result && <FourthLayout userChoice={userChoice} compChoice={compChoice} />}

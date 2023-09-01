@@ -3,8 +3,8 @@ import React from 'react';
 const MainLayout = ({handleUserChoice}) => {
     
     return (
-        <div>
-            <main className='mt-36 relative self-center'>
+        <>
+            <main className='mt-36 relative self-center lg:w-1/2'>
 
                 <div className='relative z-30 flex justify-center h-44 lg:h-64'>
                     <img src="../images/bg-triangle.svg" alt="triangle" />
@@ -33,7 +33,7 @@ const MainLayout = ({handleUserChoice}) => {
                 </div>
 
             </main>
-        </div>
+        </>
     )
 }
 

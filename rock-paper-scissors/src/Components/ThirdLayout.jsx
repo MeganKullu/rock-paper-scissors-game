@@ -30,14 +30,14 @@ const ThirdLayout = ({ compChoice, userChoice }) => {
   return (
     <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg items-center md:w-1/2'>
       <div className='basis-1/2 flex flex-col-reverse lg:flex-col tracking-widest items-center'>
-        <div className='mb-14'>YOU PICKED</div>
+        <div className='mt-8 lg:mb-14'>YOU PICKED</div>
         {userChoice === "Rock" && <Rock />}
         {userChoice === "Paper" && <Paper />}
         {userChoice === "Scissors" && <Scissors />}
       </div>
 
       <div className='basis-1/2 flex flex-col-reverse lg:flex-col items-center'>
-        <div className='mb-14'>THE HOUSE PICKED</div>
+        <div className='mt-8 lg:mb-14'>THE HOUSE PICKED</div>
         {compChoice === "Rock" && <Rock />}
         {compChoice === "Paper" && <Paper />}
         {compChoice === "Scissors" && <Scissors />}

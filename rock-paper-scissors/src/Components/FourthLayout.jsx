@@ -25,7 +25,7 @@ const Scissors = () => {
   )
 }
 
-const FourthLayout = ({ compChoice, userChoice }) => {
+const FourthLayout = ({ compChoice, userChoice, playAgain }) => {
   let userWins = false;
 
   if (

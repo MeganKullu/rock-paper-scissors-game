@@ -1,11 +1,12 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainLayout from './MainLayout';
 import SecondLayout from './SecondLayout';
 import ThirdLayout from './ThirdLayout';
 import FourthLayout from './FourthLayout';
 
 const Layout = () => {
+  const choices = ["Rock", "Paper", "Scissors"];
+
   const [begun, setHasBegun] = useState(false);
   const [userChoice, setUserChoice] = useState(null);
   const [compChoice, setCompChoice] = useState(null);
@@ -13,16 +14,40 @@ const Layout = () => {
   const [selected, setSelected] = useState(false);
   const [housePicked, setHousePicked] = useState(false);
   const [result, setResult] = useState(false);
-  const [finalResult, setFinalResult] = useState(null);
+  const [playAgain, setPlayAgain] = useState(false);
 
-
-  const choices = ["Rock", "Paper", "Scissors"];
-
+  // Load game state from local storage when the component mounts
   useEffect(() => {
+    const savedGameState = localStorage.getItem('gameState');
+    if (savedGameState) {
+      const parsedGameState = JSON.parse(savedGameState);
+      setUserScore(parsedGameState.userScore);
+    }
     setHasBegun(true);
-  }, [])
+  }, []);
 
-  // function to handle button click actions
+  // Save game state to local storage whenever the game state changes
+  useEffect(() => {
+    const gameStateToSave = {
+      userScore,
+    };
+    localStorage.setItem('gameState', JSON.stringify(gameStateToSave));
+  }, [userScore]);
+
+  const calculateGameResult = (choice, computerChoice) => {
+    if (
+      (choice === "Rock" && computerChoice === "Scissors") ||
+      (choice === "Paper" && computerChoice === "Rock") ||
+      (choice === "Scissors" && computerChoice === "Paper")
+    ) {
+      return "WIN";
+    } else if (choice === computerChoice) {
+      return "DRAW";
+    } else {
+      return "LOSE";
+    }
+  };
+
   const handleUserChoice = (choice) => {
     setUserChoice(choice);
     setSelected(true);
@@ -31,42 +56,40 @@ const Layout = () => {
     // logic to handle computers choice
     setTimeout(() => {
       const randomIndex = Math.floor(Math.random() * choices.length);
-      setCompChoice(choices[randomIndex]);
+      const computerChoice = choices[randomIndex];
+      setCompChoice(computerChoice);
       setHousePicked(true);
       setSelected(false);
-    }, 1500)
 
+      // Calculate the game result using the updated state
+      setTimeout(() => {
+        setHousePicked(false);
 
+        // Calculate the game result
+        const gameResult = calculateGameResult(choice, computerChoice);
 
-    //Determine winner and set the score
-    setTimeout(() => {
-      setHousePicked(false);
-      if ((userChoice === "Rock") && (compChoice === "Scissors") ||
-        (userChoice === "Paper") && (compChoice === "Rock") ||
-        (userChoice === "Scissors") && (compChoice === "Paper")
-      ) {
-        setUserScore(userScore + 1)
-        setFinalResult("YOU WIN")
-      }
+        setUserScore((prevUserScore) => {
+          if (gameResult === "WIN") {
+            return prevUserScore + 1;
+          } else if (gameResult === "LOSE") {
+            return prevUserScore - 1;
+          } else {
+            return prevUserScore;
+          }
+        });
 
-      if ((userChoice === "Rock") && (compChoice === "Rock") ||
-        (userChoice === "Paper") && (compChoice === "Paper") ||
-        (userChoice === "Scissors") && (compChoice === "Scissors")) {
-        setUserScore(userScore + 0)
-        setFinalResult("IT'S A DRAW")
-      }
+        setResult(true);
+      }, 2800);
+    }, 1500);
+  };
 
-      else {
-        setUserScore(userScore - 1)
-        setFinalResult("YOU LOSE")
-      }
-
-      setResult(true);
-
-    }, 2800)
-
-  }
-
+  const handlePlayAgain = () => {
+    // Reset the game state when the user wants to play again
+    setPlayAgain(true);
+    setUserChoice(null);
+    setCompChoice(null);
+    setResult(false);
+  };
 
   return (
     <div className='bg-radial flex flex-col md:justify-center md:items-center min-h-screen w-full'>
@@ -82,25 +105,24 @@ const Layout = () => {
               <div className='text-dark-text text-4xl lg:ftext-6xl font-extrabold'>{userScore}</div>
             </div>
           </div>
-
         </article>
 
-        {begun && <MainLayout handleUserChoice={handleUserChoice} className="" />}
-        {selected && <SecondLayout userChoice={userChoice} />}
-        {housePicked && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
-        {result && <FourthLayout userChoice={userChoice} compChoice={compChoice} finalResult={finalResult} />}
-
+        {begun && !playAgain && <MainLayout handleUserChoice={handleUserChoice} />}
+        {selected && !playAgain && <SecondLayout userChoice={userChoice} />}
+        {housePicked && !playAgain && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
+        {result && !playAgain && <FourthLayout userChoice={userChoice} compChoice={compChoice} playAgain={handlePlayAgain} />}
+        {playAgain && <MainLayout />}
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
           <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
         </div>
-
       </div>
-      <div className='hidden lg:flex self-end border border-white rounded-lg text-white w-1/12 mt-4 lg:mt-16 mb-10 mr-14 justify-center items-center'>
+
+      <div className='hidden lg:flex self-end border border-white rounded-lg text-white w-1/12 mt-2 lg:mt-16 mb-10 mr-14 justify-center items-center'>
         <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

@@ -51,9 +51,8 @@ const FourthLayout = ({ compChoice, userChoice, finalResult }) => {
           </div>
         </div>
 
-
         <div className='mt-10 flex flex-col lg:hidden justify-center items-center'>
-          <div className='font-bold lg:text-2xl'>{finalResult}</div>
+          <div className='font-bold text-5xl'>{finalResult}</div>
           <button className='tracking-widest bg-white px-16 py-2 lg:px-4 lg:py-3 rounded-lg text-dark-text text-base lg:text-base hover:text-red-500 mt-4'>PLAY AGAIN</button>
         </div>
       </div>

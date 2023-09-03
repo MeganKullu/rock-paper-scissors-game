@@ -13,6 +13,7 @@ const Layout = () => {
   const [selected, setSelected] = useState(false);
   const [housePicked, setHousePicked] = useState(false);
   const [result, setResult] = useState(false);
+  const [finalResult, setFinalResult] = useState("");
 
 
   const choices = ["Rock", "Paper", "Scissors"];
@@ -45,16 +46,19 @@ const Layout = () => {
         (userChoice === "Scissors") && (compChoice === "Paper")
       ) {
         setUserScore(userScore + 1)
+        setFinalResult("YOU WIN")
       }
 
       if ((userChoice === "Rock") && (compChoice === "Rock") ||
         (userChoice === "Paper") && (compChoice === "Paper") ||
         (userChoice === "Scissors") && (compChoice === "Scissors")) {
         setUserScore(userScore + 0)
+        setFinalResult("IT'S A DRAW")
       }
 
       else {
         setUserScore(userScore - 1)
+        setFinalResult("YOU LOSE")
       }
 
       setResult(true);
@@ -84,7 +88,7 @@ const Layout = () => {
         {begun && <MainLayout handleUserChoice={handleUserChoice} className="" />}
         {selected && <SecondLayout userChoice={userChoice} />}
         {housePicked && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
-        {result && <FourthLayout userChoice={userChoice} compChoice={compChoice} />}
+        {result && <FourthLayout userChoice={userChoice} compChoice={compChoice} finalResult={finalResult} />}
 
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
@@ -92,7 +96,7 @@ const Layout = () => {
         </div>
 
       </div>
-      <div className='hidden lg:flex self-end border border-white rounded-lg text-white w-1/12 mt-16 mb-10 mr-14 justify-center items-center'>
+      <div className='hidden lg:flex self-end border border-white rounded-lg text-white w-1/12 mt-4 lg:mt-16 mb-10 mr-14 justify-center items-center'>
         <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
       </div>
     </div>

@@ -13,7 +13,7 @@ const Layout = () => {
   const [selected, setSelected] = useState(false);
   const [housePicked, setHousePicked] = useState(false);
   const [result, setResult] = useState(false);
-  const [finalResult, setFinalResult] = useState("");
+  const [finalResult, setFinalResult] = useState(null);
 
 
   const choices = ["Rock", "Paper", "Scissors"];

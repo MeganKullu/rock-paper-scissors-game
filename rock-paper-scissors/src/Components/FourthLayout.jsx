@@ -39,21 +39,21 @@ const FourthLayout = ({ compChoice, userChoice, handlePlayAgain }) => {
 
   return (
     <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg justify-center items-center'>
-      <div className='flex-col lg:flex place-content-between lg:w-3/4 justify-center items-center'>
+      <div className='flex-col lg:flex place-content-between lg:w-full justify-center items-center'>
         <div className='flex gap-10 lg:flex items-center'>
-          <div className=' flex tracking-widest items-center lg:w-1/4 flex-col-reverse lg:flex-col'>
+          <div className=' flex tracking-widest items-center flex-col-reverse lg:flex-col'>
             <div className='mt-8 lg:mb-14'>YOU PICKED</div>
             {userChoice === "Rock" && <Rock />}
             {userChoice === "Paper" && <Paper />}
             {userChoice === "Scissors" && <Scissors />}
           </div>
 
-          <div className='hidden lg:flex flex-col w-full lg:w-1/4'>
-            <div className='font-bold text-2xl'>{userWins ? "YOU WIN" : userChoice === compChoice ? "IT'S A DRAW" : "YOU LOSE"}</div>
+          <div className='hidden lg:flex flex-col w-full mt-20'>
+            <div className='font-bold text-6xl mb-4'>{userWins ? "YOU WIN" : userChoice === compChoice ? "IT'S A DRAW" : "YOU LOSE"}</div>
             <button onClick={handlePlayAgain} className=' tracking-widest bg-white px-4 py-3 rounded-lg text-dark-text text-base  hover:text-red-500'>PLAY AGAIN</button>
           </div>
 
-          <div className=' flex items-center lg:w-1/4 flex-col-reverse lg:flex-col'>
+          <div className=' flex items-center flex-col-reverse lg:flex-col'>
             <div className='mt-8 lg:mb-14'>THE HOUSE PICKED</div>
             {compChoice === "Rock" && <Rock />}
             {compChoice === "Paper" && <Paper />}

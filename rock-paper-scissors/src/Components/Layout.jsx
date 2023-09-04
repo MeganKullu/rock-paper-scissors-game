@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MainLayout from './MainLayout';
 import SecondLayout from './SecondLayout';
 import ThirdLayout from './ThirdLayout';
-import FourthLayout from './FourthLayout';
+import FourthLayout from './FourthLayout.jsx';
 
 const Layout = () => {
   const choices = ["Rock", "Paper", "Scissors"];
@@ -15,6 +15,9 @@ const Layout = () => {
   const [housePicked, setHousePicked] = useState(false);
   const [result, setResult] = useState(false);
   const [playAgain, setPlayAgain] = useState(false);
+  const [showMainLayout, setShowMainLayout] = useState(false); // Initially, show MainLayout
+
+  
 
   // Load game state from local storage when the component mounts
   useEffect(() => {
@@ -83,12 +86,15 @@ const Layout = () => {
     }, 1500);
   };
 
+  
   const handlePlayAgain = () => {
     // Reset the game state when the user wants to play again
-    setPlayAgain(true);
+    
     setUserChoice(null);
     setCompChoice(null);
     setResult(false);
+    setPlayAgain(true);
+    setShowMainLayout(true);
   };
 
   return (
@@ -110,8 +116,8 @@ const Layout = () => {
         {begun && !playAgain && <MainLayout handleUserChoice={handleUserChoice} />}
         {selected && !playAgain && <SecondLayout userChoice={userChoice} />}
         {housePicked && !playAgain && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
-        {result && !playAgain && <FourthLayout userChoice={userChoice} compChoice={compChoice} playAgain={handlePlayAgain} />}
-        {playAgain && <MainLayout />}
+        {result && !playAgain && <FourthLayout userChoice={userChoice} compChoice={compChoice} handlePlayAgain={handlePlayAgain}/>}
+        {showMainLayout && playAgain && <MainLayout handleUserChoice={handleUserChoice}/>}
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
           <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>

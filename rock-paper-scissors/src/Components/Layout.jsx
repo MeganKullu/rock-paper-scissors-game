@@ -15,7 +15,7 @@ const Layout = () => {
   const [housePicked, setHousePicked] = useState(false);
   const [result, setResult] = useState(false);
   const [playAgain, setPlayAgain] = useState(false);
-  const [showMainLayout, setShowMainLayout] = useState(false); // Initially, show MainLayout
+  const [showMainLayout, setShowMainLayout] = useState(false); 
 
   
 
@@ -93,8 +93,10 @@ const Layout = () => {
     setUserChoice(null);
     setCompChoice(null);
     setResult(false);
-    setPlayAgain(true);
-    setShowMainLayout(true);
+    setPlayAgain(false);
+    setShowMainLayout(false);
+    setHasBegun(true); // Start a new game cycle
+    
   };
 
   return (
@@ -117,7 +119,7 @@ const Layout = () => {
         {selected && !playAgain && <SecondLayout userChoice={userChoice} />}
         {housePicked && !playAgain && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
         {result && !playAgain && <FourthLayout userChoice={userChoice} compChoice={compChoice} handlePlayAgain={handlePlayAgain}/>}
-        {showMainLayout && playAgain && <MainLayout handleUserChoice={handleUserChoice}/>}
+       
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
           <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>

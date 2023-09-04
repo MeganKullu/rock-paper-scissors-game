@@ -18,15 +18,7 @@ const Layout = () => {
 
 
   // Load game state from local storage when the component mounts
-  useEffect(() => {
-    const savedGameState = localStorage.getItem('gameState');
-    if (savedGameState) {
-      const parsedGameState = JSON.parse(savedGameState);
-      setUserScore(parsedGameState.userScore);
-    }
-    setHasBegun(true);
-  }, []);
-
+  
   // Save game state to local storage whenever the game state changes
   useEffect(() => {
     const gameStateToSave = {
@@ -34,6 +26,18 @@ const Layout = () => {
     };
     localStorage.setItem('gameState', JSON.stringify(gameStateToSave));
   }, [userScore]);
+
+  useEffect(() => {
+    const savedGameState = localStorage.getItem('gameState');
+    if (savedGameState) {
+      const parsedGameState = JSON.parse(savedGameState);
+      setUserScore(parsedGameState.userScore);
+    } else {
+      // If no saved state exists, initialize with 0
+      setUserScore(0);
+    }
+    setHasBegun(true);
+  }, []);
 
   const calculateGameResult = (choice, computerChoice) => {
     if (

@@ -15,9 +15,7 @@ const Layout = () => {
   const [housePicked, setHousePicked] = useState(false);
   const [result, setResult] = useState(false);
   const [playAgain, setPlayAgain] = useState(false);
-  const [showMainLayout, setShowMainLayout] = useState(false); 
 
-  
 
   // Load game state from local storage when the component mounts
   useEffect(() => {
@@ -94,7 +92,6 @@ const Layout = () => {
     setCompChoice(null);
     setResult(false);
     setPlayAgain(false);
-    setShowMainLayout(false);
     setHasBegun(true); // Start a new game cycle
     
   };
@@ -122,12 +119,12 @@ const Layout = () => {
        
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
-          <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
+          <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button>
         </div>
       </div>
 
       <div className='hidden lg:flex self-end border border-white rounded-lg text-white w-1/12 mt-2 lg:mt-16 mb-10 mr-14 justify-center items-center'>
-        <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest'>RULES</button>
+        <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button>
       </div>
     </div>
   );

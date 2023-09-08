@@ -3,6 +3,7 @@ import MainLayout from './MainLayout';
 import SecondLayout from './SecondLayout';
 import ThirdLayout from './ThirdLayout';
 import FourthLayout from './FourthLayout.jsx';
+import Rules from './Rules';
 
 const Layout = () => {
   const choices = ["Rock", "Paper", "Scissors"];
@@ -10,34 +11,25 @@ const Layout = () => {
   const [begun, setHasBegun] = useState(false);
   const [userChoice, setUserChoice] = useState(null);
   const [compChoice, setCompChoice] = useState(null);
-  const [userScore, setUserScore] = useState(0);
+  const [userScore, setUserScore] = useState(Number(localStorage.getItem('gameState')) ?? 0);
   const [selected, setSelected] = useState(false);
   const [housePicked, setHousePicked] = useState(false);
   const [result, setResult] = useState(false);
   const [playAgain, setPlayAgain] = useState(false);
+  const [rules, setRules] = useState(false);
 
 
   // Load game state from local storage when the component mounts
-  
-  // Save game state to local storage whenever the game state changes
-  useEffect(() => {
-    const gameStateToSave = {
-      userScore,
-    };
-    localStorage.setItem('gameState', JSON.stringify(gameStateToSave));
-  }, [userScore]);
-
   useEffect(() => {
     const savedGameState = localStorage.getItem('gameState');
-    if (savedGameState) {
-      const parsedGameState = JSON.parse(savedGameState);
-      setUserScore(parsedGameState.userScore);
-    } else {
-      // If no saved state exists, initialize with 0
-      setUserScore(0);
-    }
+    setUserScore(savedGameState ?? 0);
     setHasBegun(true);
   }, []);
+
+  // Save game state to local storage whenever the game state changes
+  useEffect(() => {
+    localStorage.setItem('gameState', userScore);
+  }, [userScore]);
 
   const calculateGameResult = (choice, computerChoice) => {
     if (
@@ -84,24 +76,28 @@ const Layout = () => {
         });
 
         setResult(true);
-      }, 2800);
+      }, 500);
     }, 1500);
   };
 
-  
+
   const handlePlayAgain = () => {
     // Reset the game state when the user wants to play again
-    
+
     setUserChoice(null);
     setCompChoice(null);
     setResult(false);
     setPlayAgain(false);
     setHasBegun(true); // Start a new game cycle
-    
+
   };
 
+  const handleRules = () => {
+    setRules(true);
+  }
+
   return (
-    <div className='bg-radial flex flex-col md:justify-center md:items-center min-h-screen w-full'>
+    <div className='bg-radial flex flex-col md:justify-center md:items-center min-h-screen w-full relative'>
       <div className='flex flex-col px-4 w-full justify-center items-center'>
         <article className='w-full lg:w-1/2'>
           <div className='rounded-lg border-2 py-2 pl-4 pr-2 mt-6 flex place-content-between'>
@@ -119,16 +115,17 @@ const Layout = () => {
         {begun && !playAgain && <MainLayout handleUserChoice={handleUserChoice} />}
         {selected && !playAgain && <SecondLayout userChoice={userChoice} />}
         {housePicked && !playAgain && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
-        {result && !playAgain && <FourthLayout userChoice={userChoice} compChoice={compChoice} handlePlayAgain={handlePlayAgain}/>}
-       
+        {result && !playAgain && <FourthLayout userChoice={userChoice} compChoice={compChoice} handlePlayAgain={handlePlayAgain} />}
+        {rules && <Rules/> }
+
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
-          <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button>
+          <button onClick={handleRules} aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button>
         </div>
       </div>
 
       <div className='hidden lg:flex self-end border border-white rounded-lg text-white w-1/12 mt-2 lg:mt-16 mb-10 mr-14 justify-center items-center'>
-        <button aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button>
+        <button onClick={handleRules }aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button>
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ const Layout = () => {
   // Load game state from local storage when the component mounts
   useEffect(() => {
     const savedGameState = localStorage.getItem('gameState');
-    setUserScore(savedGameState ?? 0);
+    setUserScore(parseInt(savedGameState, 10) ?? 0);
     setHasBegun(true);
   }, []);
 

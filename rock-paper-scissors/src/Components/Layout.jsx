@@ -148,8 +148,10 @@ const Layout = () => {
       </div>
 
       <div className='hidden lg:flex self-end border border-white rounded-lg text-white w-1/12 mt-2 lg:mt-16 mb-10 mr-14 justify-center items-center'>
-        <button onClick={handleRules} aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button>
+        <button onClick={handleRules} aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button> 
       </div>
+      <div className='text-white'>Coded by <a href="https://megankullu.netlify.app/ " className='hover:text-red-500 underline-offset-1'>Megan Kullu</a></div>
+
     </div>
   );
 };

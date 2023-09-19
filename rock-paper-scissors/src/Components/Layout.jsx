@@ -52,47 +52,46 @@ const Layout = () => {
     setUserChoice(choice);
     setSelected(true);
     setHasBegun(false);
-
-    // logic to handle computers choice
+  
+    // logic to handle computer's choice
     setTimeout(() => {
       const randomIndex = Math.floor(Math.random() * choices.length);
       const computerChoice = choices[randomIndex];
       setCompChoice(computerChoice);
       setHousePicked(true);
       setSelected(false);
-
+  
       // Calculate the game result using the updated state
       setTimeout(() => {
         setHousePicked(false);
-
+  
         // Calculate the game result
         const gameResult = calculateGameResult(choice, computerChoice);
-
-        setUserScore((prevUserScore) => {
-          if (gameResult === "WIN") {
-            return prevUserScore + 1;
-          } else if (gameResult === "LOSE") {
-            return prevUserScore - 1;
-          } else {
-            return prevUserScore;
-          }
-        });
-
-        setResult(true);
-        if (
-          (userChoice === "Rock" && compChoice === "Scissors") ||
-          (userChoice === "Paper" && compChoice === "Rock") ||
-          (userChoice === "Scissors" && compChoice === "Paper")
-        ) {
+  
+        // Determine who wins or if it's a draw
+        if (gameResult === "WIN") {
           setUserWins(true);
           setHouseWins(false);
-        } else {
+        } else if (gameResult === "LOSE") {
           setUserWins(false);
           setHouseWins(true);
+        } else {
+          setUserWins(false);
+          setHouseWins(false);
         }
+  
+        // Update the user's score based on the result
+        if (gameResult === "WIN") {
+          setUserScore((prevUserScore) => prevUserScore + 1);
+        } else if (gameResult === "LOSE") {
+          setUserScore((prevUserScore) => prevUserScore - 1);
+        }
+  
+        setResult(true);
       }, 500);
     }, 1500);
   };
+  
 
 
   const handlePlayAgain = () => {
@@ -129,14 +128,14 @@ const Layout = () => {
         {begun && !playAgain && <MainLayout handleUserChoice={handleUserChoice} />}
         {selected && !playAgain && <SecondLayout userChoice={userChoice} />}
         {housePicked && !playAgain && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
-        {result && !playAgain && <FourthLayout 
-        userChoice={userChoice} 
-        compChoice={compChoice} 
-        handlePlayAgain={handlePlayAgain}
-        userWins={userWins}
-        houseWins={houseWins}
-         />}
-        {rules && <Rules/> }
+        {result && !playAgain && <FourthLayout
+          userChoice={userChoice}
+          compChoice={compChoice}
+          handlePlayAgain={handlePlayAgain}
+          userWins={userWins}
+          houseWins={houseWins}
+        />}
+        {rules && <Rules />}
 
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
@@ -145,7 +144,7 @@ const Layout = () => {
       </div>
 
       <div className='hidden lg:flex self-end border border-white rounded-lg text-white w-1/12 mt-2 lg:mt-16 mb-10 mr-14 justify-center items-center'>
-        <button onClick={handleRules }aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button>
+        <button onClick={handleRules} aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button>
       </div>
     </div>
   );

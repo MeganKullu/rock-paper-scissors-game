@@ -119,7 +119,7 @@ const Layout = () => {
         <article className='w-full md:w-3/4 lg:w-1/2'>
           <div className='rounded-lg border-2 py-2 pl-4 pr-2 mt-6 flex place-content-between'>
             <div className='h-16 w-24 flex justify-center items-center my-3'>
-              <img src="../images/logo.svg" alt="logo" />
+              <img src="/images/logo.svg" alt="logo" />
             </div>
 
             <div className='bg-white rounded-lg flex flex-col justify-center items-center w-28'>

@@ -17,6 +17,9 @@ const Layout = () => {
   const [result, setResult] = useState(false);
   const [playAgain, setPlayAgain] = useState(false);
   const [rules, setRules] = useState(false);
+  const [userWins, setUserWins] = useState(false);
+  const [houseWins, setHouseWins] = useState(false);
+
 
 
   // Load game state from local storage when the component mounts
@@ -76,6 +79,17 @@ const Layout = () => {
         });
 
         setResult(true);
+        if (
+          (userChoice === "Rock" && compChoice === "Scissors") ||
+          (userChoice === "Paper" && compChoice === "Rock") ||
+          (userChoice === "Scissors" && compChoice === "Paper")
+        ) {
+          setUserWins(true);
+          setHouseWins(false);
+        } else {
+          setUserWins(false);
+          setHouseWins(true);
+        }
       }, 500);
     }, 1500);
   };
@@ -115,7 +129,13 @@ const Layout = () => {
         {begun && !playAgain && <MainLayout handleUserChoice={handleUserChoice} />}
         {selected && !playAgain && <SecondLayout userChoice={userChoice} />}
         {housePicked && !playAgain && <ThirdLayout userChoice={userChoice} compChoice={compChoice} />}
-        {result && !playAgain && <FourthLayout userChoice={userChoice} compChoice={compChoice} handlePlayAgain={handlePlayAgain} />}
+        {result && !playAgain && <FourthLayout 
+        userChoice={userChoice} 
+        compChoice={compChoice} 
+        handlePlayAgain={handlePlayAgain}
+        userWins={userWins}
+        houseWins={houseWins}
+         />}
         {rules && <Rules/> }
 
 

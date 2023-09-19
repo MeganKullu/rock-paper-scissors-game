@@ -1,41 +1,32 @@
 
 import React from 'react';
+import { useState } from 'react';
 
-const Paper = () => {
+const Paper = ({animate}) => {
   return (
-    <div className="bg-white h-36 w-36 md:h-48 md:w-48 lg:w-64 lg:h-64 flex justify-center items-center rounded-full border-paper border-[20px] lg:border-[28px]" style={{ zIndex: 1000 }}>
+    <div className={"bg-white h-36 w-36 md:h-48 md:w-48 lg:w-64 lg:h-64 flex justify-center items-center rounded-full border-paper border-[20px] lg:border-[28px]" + (animate? ' animate-ping' : '')} style={{ zIndex: 1000 }}>
       <button id='paper' aria-label='paper'><img src="../images/icon-paper.svg" alt="paper" className='lg:h-28' /></button>
     </div>
   )
 }
 
-const Rock = () => {
+const Rock = ({animate}) => {
   return (
-    <div className="bg-white h-36 w-36 md:h-48 md:w-48 lg:w-64 lg:h-64 flex justify-center items-center rounded-full border-rock border-[20px] lg:border-[28px]" style={{ zIndex: 1000 }}>
+    <div className={"bg-white h-36 w-36 md:h-48 md:w-48 lg:w-64 lg:h-64 flex justify-center items-center rounded-full border-rock border-[20px] lg:border-[28px]" + (animate? ' animate-ping' : '')} style={{ zIndex: 1000 }}>
       <button id='rock' aria-label='paper'><img src="../images/icon-rock.svg" alt="rock" className='lg:h-28' /></button>
     </div>
   )
 }
 
-const Scissors = () => {
+const Scissors = ({animate}) => {
   return (
-    <div className="bg-white h-36 w-36 md:h-48 md:w-48 lg:w-64 lg:h-64 flex justify-center items-center rounded-full border-scissors border-[20px] lg:border-[28px] " style={{ zIndex: 1000 }}>
+    <div className={"bg-white h-36 w-36 md:h-48 md:w-48 lg:w-64 lg:h-64 flex justify-center items-center rounded-full border-scissors border-[20px] lg:border-[28px]" + (animate? ' animate-ping' : '')} style={{ zIndex: 1000 }}>
       <button id='scissors' aria-label='paper' ><img src="../images/icon-scissors.svg" alt="scissors" className='lg:h-28' /></button>
     </div>
   )
 }
 
-const FourthLayout = ({ compChoice, userChoice, handlePlayAgain }) => {
-  let userWins = false;
-
-  if (
-    (userChoice === "Rock" && compChoice === "Scissors") ||
-    (userChoice === "Paper" && compChoice === "Rock") ||
-    (userChoice === "Scissors" && compChoice === "Paper")
-  ) {
-    userWins = true;
-  }
-
+const FourthLayout = ({ compChoice, userChoice, handlePlayAgain, userWins, houseWins }) => {
 
   return (
     <div className='flex text-white text-center w-full tracking-widest mt-16 text-lg justify-center items-center'>
@@ -43,9 +34,9 @@ const FourthLayout = ({ compChoice, userChoice, handlePlayAgain }) => {
         <div className='flex gap-10 lg:flex items-center'>
           <div className=' flex tracking-widest items-center flex-col-reverse lg:flex-col'>
             <div className='mt-8 lg:mb-14'>YOU PICKED</div>
-            {userChoice === "Rock" && <Rock />}
-            {userChoice === "Paper" && <Paper />}
-            {userChoice === "Scissors" && <Scissors />}
+            {userChoice === "Rock" && <Rock animate={userWins}/>}
+            {userChoice === "Paper" && <Paper animate={userWins}/>}
+            {userChoice === "Scissors" && <Scissors animate={userWins}/>}
           </div>
 
           <div className='hidden lg:flex flex-col w-full mt-20'>
@@ -55,9 +46,9 @@ const FourthLayout = ({ compChoice, userChoice, handlePlayAgain }) => {
 
           <div className=' flex items-center flex-col-reverse lg:flex-col'>
             <div className='mt-8 lg:mb-14'>THE HOUSE PICKED</div>
-            {compChoice === "Rock" && <Rock />}
-            {compChoice === "Paper" && <Paper />}
-            {compChoice === "Scissors" && <Scissors />}
+            {compChoice === "Rock" && <Rock animate={houseWins} />}
+            {compChoice === "Paper" && <Paper animate={houseWins} />}
+            {compChoice === "Scissors" && <Scissors animate={houseWins} />}
           </div>
         </div>
 

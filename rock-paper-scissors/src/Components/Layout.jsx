@@ -116,7 +116,7 @@ const Layout = () => {
   return (
     <div className='bg-radial flex flex-col md:justify-center md:items-center min-h-screen w-full relative'>
       <div className='flex flex-col px-4 w-full justify-center items-center'>
-        <article className='w-full lg:w-1/2'>
+        <article className='w-full md:w-3/4 lg:w-1/2'>
           <div className='rounded-lg border-2 py-2 pl-4 pr-2 mt-6 flex place-content-between'>
             <div className='h-16 w-24 flex justify-center items-center my-3'>
               <img src="../images/logo.svg" alt="logo" />
@@ -142,7 +142,7 @@ const Layout = () => {
         {rules && <Rules handleCloseRules={handleCloseRules} />}
 
 
-        <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>
+        <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 md:mt-32 lg:mt-4 mb-10 flex justify-center items-center'>
           <button onClick={handleRules} aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button>
         </div>
       </div>

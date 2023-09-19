@@ -109,6 +109,10 @@ const Layout = () => {
     setRules(true);
   }
 
+  const handleCloseRules = () => {
+    setRules(false);
+  }
+
   return (
     <div className='bg-radial flex flex-col md:justify-center md:items-center min-h-screen w-full relative'>
       <div className='flex flex-col px-4 w-full justify-center items-center'>
@@ -135,7 +139,7 @@ const Layout = () => {
           userWins={userWins}
           houseWins={houseWins}
         />}
-        {rules && <Rules />}
+        {rules && <Rules handleCloseRules={handleCloseRules} />}
 
 
         <div className='lg:hidden border border-white rounded-lg text-white self-center w-1/3 mt-24 lg:mt-4 mb-10 flex justify-center items-center'>

@@ -11,7 +11,7 @@ const Layout = () => {
   const [begun, setHasBegun] = useState(false);
   const [userChoice, setUserChoice] = useState(null);
   const [compChoice, setCompChoice] = useState(null);
-  const [userScore, setUserScore] = useState(Number(localStorage.getItem('gameState')) ?? 0);
+  const [userScore, setUserScore] = useState(Number(localStorage.getItem('gameState')) || 0);
   const [selected, setSelected] = useState(false);
   const [housePicked, setHousePicked] = useState(false);
   const [result, setResult] = useState(false);
@@ -25,7 +25,7 @@ const Layout = () => {
   // Load game state from local storage when the component mounts
   useEffect(() => {
     const savedGameState = localStorage.getItem('gameState');
-    setUserScore(parseInt(savedGameState, 10) ?? 0);
+    setUserScore(parseInt(savedGameState, 10) || 0);
     setHasBegun(true);
   }, []);
 
@@ -150,7 +150,7 @@ const Layout = () => {
       <div className='hidden lg:flex self-end border border-white rounded-lg text-white w-1/12 mt-2 lg:mt-16 mb-10 mr-14 justify-center items-center'>
         <button onClick={handleRules} aria-label="rules" className='text-center text-white px-5 py-2 tracking-widest hover:text-paper'>RULES</button> 
       </div>
-      <div className='text-white'>Coded by <a href="https://megankullu.netlify.app/ " className='hover:text-red-500 underline-offset-1'>Megan Kullu</a></div>
+      <div className='text-white self-center'>Coded by <a href="https://megankullu.netlify.app/ " className='hover:text-red-500 underline-offset-1'>Megan Kullu</a></div>
 
     </div>
   );
